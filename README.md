@@ -1,6 +1,6 @@
 # Forum
 
-Idea on luoda foorumi johon käyttäjät voivat luoda aiheita, joista haluavat keskustella.
+Ideani on luoda foorumi. Haluan luoda hyvän foorumi pohjan, jonka voin tulevaisuudessa helposti lisätä osaksi muita sovelluksia.
 
 ### Sovelluksen ominaisuudet
 
