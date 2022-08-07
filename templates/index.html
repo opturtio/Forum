@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <html>
     <head>
-        <title>Forum</title>
+        <title>login</title>
+        <link rel="stylesheet" href="static/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1>Forum</h1>
-        <a href="login">Login</a>
-        <a href="signup">Sign up</a>
+        <div class="all" >
+            <div class="header">
+                <h1>Forum</h1>
+            </div>
+                <div class="user">
+                    <form action="/" method="POST">
+                        <p>Username:<br>
+                        <input type="text" name="username"></p>
+                        <p>Password:<br>
+                        <input type="password" name="password"></p>
+                        <input type="submit" value="Log in">
+                    </form>
+                </div>
+            <div class="signup">
+                <a href="signup">Sign up</a>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,5 +1,56 @@
 body {
-    margin: auto;
-    max-width: 50em;
-    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-image: linear-gradient(to bottom left, rgb(43, 133, 236), rgb(219, 227, 250));
+    background-size: 150% 1500%;
+}
+.header {
+    color:rgb(248, 246, 255);
+    font-size: 30px;
+    display: flex;
+    align-items:baseline;
+    justify-content: center;
+
+}
+
+.all {
+    background-image: linear-gradient(to bottom left, rgb(23, 38, 250), rgb(84, 250, 222));
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    max-width: 500px;
+    margin: 150px auto;
+    padding-bottom: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+    .all {
+        max-width: 300px;
+        padding-bottom: 50px;
+    }
+}
+
+.login {
+    color:rgb(248, 246, 255);
+    position: relative;
+    font-size: 30px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    
+}
+
+.signup {
+    color:rgb(248, 246, 255);
+    position: relative;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user {
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: center;
 }
