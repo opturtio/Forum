@@ -6,17 +6,17 @@ import users
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        #todo check if user is
+        #TODO check if user is logged in
         return render_template("index.html")
     
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username, password):
-            return render_template("forum.html")
+            return redirect("/forum")
         else:
-            #here javascript if something went wrong
-            return render_template("index.html")
+            #TODO here javascript if something went wrong
+            return redirect("/")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -30,7 +30,7 @@ def signup():
         if users.check_user(username, password, password2):
             users.signup(username, password)
             return redirect("/")
-    return render_template("signup.html")
+    return redirect("/signup")
 
 @app.route("/logout")
 def logout():

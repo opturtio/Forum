@@ -1,14 +1,12 @@
 body {
-    background-image: linear-gradient(to bottom left, rgb(43, 133, 236), rgb(219, 227, 250));
-    background-size: 150% 1500%;
+    background-image: linear-gradient(45deg, lightblue, blue);
+    background-size: 150% 1000%;
 }
-.header {
-    color:rgb(248, 246, 255);
-    font-size: 30px;
-    display: flex;
-    align-items:baseline;
-    justify-content: center;
 
+@media only screen and (max-width: 600px) {
+    .all {
+        max-width: 250px;
+    }
 }
 
 .all {
@@ -17,17 +15,24 @@ body {
     border-bottom-right-radius: 30%;
     border-top-left-radius: 30%;
     border-top-right-radius: 30%;
-    max-width: 500px;
+    max-width: 400px;
     margin: 150px auto;
-    padding-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.header {
+    color:rgb(248, 246, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+    font-size: 30px;
+    display: flex;
+    align-items:baseline;
+    justify-content: center;
+
 }
 
-@media only screen and (max-width: 600px) {
-    .all {
-        max-width: 300px;
-        padding-bottom: 50px;
-    }
-}
 
 .login {
     color:rgb(248, 246, 255);
@@ -42,10 +47,12 @@ body {
 .signup {
     color:rgb(248, 246, 255);
     position: relative;
-    font-size: 30px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 40px auto;
+    
 }
 
 .user {
