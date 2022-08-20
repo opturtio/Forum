@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>Create new topic</h1>
+
+<form action="/Forum" method="POST">
+    <h3>New topic:</h3>
+    <input type="text" name="topic" minlength="2" maxlength="50">
+    <h4>First comment:</h4>
+    <textarea name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
+</form>
+    
+{% end block %}

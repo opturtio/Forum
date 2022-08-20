@@ -1,6 +1,6 @@
-from flask import session
+from flask import session, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from db import db
-from werkzeug.security import check_password_hash, generate_password_hash
 
 def login(username, password):
     sql = "SELECT id, password FROM users WHERE username=:username"
@@ -13,9 +13,7 @@ def login(username, password):
             session["user_id"] = user.id
             session["username"] = username
             return True
-        else:
-            return False
-        
+        return False
 
 def signup(username, password):
     hash_value = generate_password_hash(password)
@@ -29,14 +27,16 @@ def signup(username, password):
 
 def check_user(username, password, password2):
     if password != password2:
+        flash("Those passwords did not match. Try again.")
         return False
     if len(password) < 8:
+        flash("Password too short.")
         return False
     if check_username(username):
+        flash("That username is taken. Try another.")
         return False
     return True
-    
-    
+
 def check_username(username):
     sql = "SELECT id FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username": username}).fetchone()
