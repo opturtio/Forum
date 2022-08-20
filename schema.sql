@@ -6,18 +6,18 @@ CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
     password TEXT
-)
+);
 
-CREATE TABLE topics (
+CREATE TABLE IF NOT EXISTS topics (
     id SERIAL PRIMARY KEY,
     topic TEXT UNIQUE,
     user_id INTEGER REFERENCES users,
     created_at TIMESTAMP
 );
 
-CREATE TABLE messages (
+CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
-    topic_id TEXT REFERENCES topics
+    topic_id INTEGER REFERENCES topics,
     content TEXT,
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP

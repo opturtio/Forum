@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, session
+from flask import render_template, request, redirect, session, url_for
 from app import app
-import users, comments
+import users, database
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -41,14 +41,14 @@ def logout():
 def forum():
     topic = request.form["topic"]
     message = request.form["message"] # message have to be inserted to database
-    return render_template("forum.html", topic=topic, message=message)
+    return render_template("forum.html" topic=topic, message=message)
 
-app.route("/create_post")
-def create_post():
-    return render_template("create_post.html")
+@app.route("/create_topic")
+def create_topic():
+    return render_template("create_topic.html")
 
-app.route("/comments")
+@app.route("/comments")
 def comments():
     topic = request.form["topic"]
-    fetched_comment = comments.fetch_comments(topic)
-    return render_template("comments.html", fetched_comments=fetched_comment)
+    fetched_comments = database.fetch_comments(topic)
+    return render_template("comments.html", fetched_comments=fetched_comments)

@@ -10,7 +10,7 @@ body {
 }
 
 .mainbar {
-    background-image: linear-gradient(rgb(5, 216, 100), rgb(3, 230, 211));
+    background-image: linear-gradient(rgb(19, 5, 216), rgb(12, 1, 165), rgb(1, 119, 109));
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: rgb(217, 217, 248);
     max-height: 150px;

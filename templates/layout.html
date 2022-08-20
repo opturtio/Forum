@@ -1,13 +1,10 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="static/forum.css">
 
-<html>
-    <head>
-        <title>Forum</title>
-        <link rel="stylesheet" href="static/forum.css">
-    </head>
-    <body>
-        <div class="mainbar">
-            <h1>Forum</h1>
-        </div>
-    </body>
-</html>
+<title>forum - {% block title %}{% endblock %}</title>
+
+<div class="mainbar">
+    <h1>Forum</h1>
+</div>
+
+{% block content %}{% endblock %}
