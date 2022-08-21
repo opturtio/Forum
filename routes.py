@@ -22,6 +22,7 @@ def index():
 def signup():
     if request.method == "GET":
         return render_template("signup.html")
+    
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -39,25 +40,24 @@ def logout():
 
 @app.route("/forum")
 def forum():
-    return render_template("forum.html")
+    if request.method == "GET":
+        topics = database.fetch_topic()
+    return render_template("forum.html", topics=topics)
 
 @app.route("/create_topic", methods=["GET", "POST"])
 def create_topic():
     if request.method == "GET":
         return render_template("create_topic.html")
-    #TODO continue from here to create database for message and topic
+    
     if request.method == "POST":
-        topic = request.form["topic"] # topic have to be inserted to database
-        message = request.form["message"] # message have to be inserted to database
+        topic = request.form["topic"] 
+        message = request.form["message"]
         database.insert_topic(topic)
-        print(topic)
         database.insert_message(message)
-        print(message)
         return redirect("/forum")
     return render_template("create_topic.html")
 
 @app.route("/comments")
 def comments():
-    topic = request.form["topic"]
-    fetched_comments = database.fetch_comments(topic)
+    fetched_comments = database.fetch_comments()
     return render_template("comments.html", fetched_comments=fetched_comments)

@@ -3,6 +3,12 @@
 {% block title %}forum{% endblock %}
 
 {% block content %}
-<h1>Moi</h1>
-<a href="{{ url_for('create_topic') }}">Create topic</a>
+<a href="{{ url_for('create_topic') }}"><button>Create topic</button></a>
+<br>
+<br>
+{% for topic in topics %}
+<strong>{{ topic.topic}}</strong> created: {{topic.created_at.strftime("%d-%m-%Y %H:%M:%S")}} <!-- TODO link from every topic to comments of that topic-->
+<br>
+<br>
+{% endfor %}
 {% endblock %}

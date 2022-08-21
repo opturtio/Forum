@@ -14,6 +14,12 @@ def insert_message(message):
     db.session.commit()
     return
 
+def fetch_topic():
+    sql = "SELECT topic, created_at FROM topics"
+    result = db.session.execute(sql)
+    topics = result.fetchall()
+    return topics
+
 #def fetch_comments(topic):
 #    sql = "SELECT * FROM messages"
 #    result = db.session.execute(sql)
