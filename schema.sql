@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS topics (
 
 CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
-    topic_id INTEGER REFERENCES topics,
     content TEXT,
+    topic_id INTEGER REFERENCES topics,
     user_id INTEGER REFERENCES users,
-    sent_at TIMESTAMP
+    created_at TIMESTAMP
 );
 

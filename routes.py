@@ -27,9 +27,8 @@ def signup():
         password = request.form["password"]
         password2 = request.form["password2"]
 
-        if users.check_user(username, password, password2):
+        if users.check_signup_form(username, password, password2):
             users.signup(username, password)
-            
             return redirect("/")
     return redirect("/signup")
 
@@ -48,9 +47,13 @@ def create_topic():
         return render_template("create_topic.html")
     #TODO continue from here to create database for message and topic
     if request.method == "POST":
-        topic = request.form["topic"]
+        topic = request.form["topic"] # topic have to be inserted to database
         message = request.form["message"] # message have to be inserted to database
-        return redirect("/forum", topic=topic, message=message)
+        database.insert_topic(topic)
+        print(topic)
+        database.insert_message(message)
+        print(message)
+        return redirect("/forum")
     return render_template("create_topic.html")
 
 @app.route("/comments")

@@ -27,12 +27,12 @@ def signup(username, password):
         return False
     return
 
-def check_user(username, password, password2):
+def check_signup_form(username, password, password2):
     if password != password2:
         flash("Those passwords did not match. Try again.")
         return False
     if len(password) < 8:
-        flash("Password too short.")
+        flash("Password is too short.")
         return False
     if check_username(username):
         flash("That username is taken. Try another.")
