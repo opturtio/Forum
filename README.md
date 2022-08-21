@@ -1,10 +1,10 @@
 # Forum
 
-Ideani on luoda foorumi. Haluan luoda hyvän foorumi pohjan, jonka voin tulevaisuudessa helposti lisätä osaksi muita sovelluksia.
+Ideani on luoda foorumi.
 
 ### Sovelluksen tämän hetkinen tila
 
-Pystyin aloittamaan Forumin toteutuksen vasta lauantaina 6.8. Olen luonut etusivun ja kirjautumis toiminnon foorumille. Sign up sivu on vielä erillinen mutta lisään sen etusivuun ja teen siihen jonkinlaisen animaation joka joko näyttää log in tai sign up sivun. Kun sisään on kirjauduttu ohjaudutaan itse foorumille. Seuraavaksi toteutan itse foorumin. Olen nyt tehnyt ohjelmaa vasta kaksi päivää. Nyt minulla on aikaa ja voin keskittyä tekemään itse foorumi osuuden ja viimeistelen etusivun. 
+Sovelluksessa on vielä paljon tekemistä. Olen kamppaillut monien ongelmien kanssa sovellusta tehtäessä ja olen käyttänyt paljon aikaa miettiessäni miten eri osat toteutetaan, mutta nyt on alkanut luistamaan. Mukavaa, että on vielä kaksi viikkoa aikaa, joten saan varmasti sovelluksen valmiiksi. Tällä hetkellä sovellukseen voi luoda ensimmäisen kommentin ja keskuntelun aiheet. Etusivulle tulostuu kaikki aiheet. Tällä hetkellä olen miettimässä miten saan toteutettua siirtymisen forumin etusivun aihetta painamalla kommentointi sivulle. Minun pitää myös linkittää tietokannan taulut ja luoda pari taulua lisää. Lopuksi pitää vain varmistaa tietoturva ja viimeistellä.
 
 ### Testaaminen
 
