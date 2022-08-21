@@ -29,22 +29,28 @@ def signup():
 
         if users.check_user(username, password, password2):
             users.signup(username, password)
+            
             return redirect("/")
     return redirect("/signup")
 
 @app.route("/logout")
 def logout():
-    del session["username"]
+    users.logout()
     return redirect("/")
 
 @app.route("/forum")
 def forum():
-    topic = request.form["topic"]
-    message = request.form["message"] # message have to be inserted to database
-    return render_template("forum.html" topic=topic, message=message)
+    return render_template("forum.html")
 
-@app.route("/create_topic")
+@app.route("/create_topic", methods=["GET", "POST"])
 def create_topic():
+    if request.method == "GET":
+        return render_template("create_topic.html")
+    #TODO continue from here to create database for message and topic
+    if request.method == "POST":
+        topic = request.form["topic"]
+        message = request.form["message"] # message have to be inserted to database
+        return redirect("/forum", topic=topic, message=message)
     return render_template("create_topic.html")
 
 @app.route("/comments")
