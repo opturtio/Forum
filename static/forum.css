@@ -16,5 +16,18 @@ body {
     max-height: 150px;
     font-size: larger;
     letter-spacing: 2px;
+}
 
+.topic_box {
+    background-color: rgb(211, 255, 255);
+    border-style: solid;
+    border: 2px solid rgb(65, 100, 172);
+    margin-top: 3px;
+ }
+
+.topic_link a {
+    color:rgb(153, 84, 6);
+    font-size: larger;
+    margin-left: 2px;
+    margin-top: 3px;
 }

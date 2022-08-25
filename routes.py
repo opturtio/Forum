@@ -42,7 +42,10 @@ def logout():
 def forum():
     if request.method == "GET":
         topics = database.fetch_topic()
-    return render_template("forum.html", topics=topics)
+        username = session["username"]
+        return render_template("forum.html", topics=topics, username=username)
+    #if request.method == "POST":
+        #topic_link = 
 
 @app.route("/create_topic", methods=["GET", "POST"])
 def create_topic():
