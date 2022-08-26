@@ -19,7 +19,6 @@ body {
 }
 
 .topic_box {
-    background-color: rgb(211, 255, 255);
     border-style: solid;
     border: 2px solid rgb(65, 100, 172);
     margin-top: 3px;

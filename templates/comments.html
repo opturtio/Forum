@@ -4,6 +4,19 @@
 
 {% block content %}
 
-<h3>Comments</h3>
+<h2>Comments</h2>
+
+{% for comment in comments %}
+{{ comment.content }}
+<br>
+<br>
+{% endfor %}
+
+<form action="{{url_for('add_comment')}}" method="POST">
+    <h3>Write comment:</h3>
+    <textarea name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
+    <input type="hidden" name="topic_id" value={{ topic_id }}>
+    <input type="submit" value="Comment">
+</form>
 
 {% endblock %}

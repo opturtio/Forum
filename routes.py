@@ -44,8 +44,6 @@ def forum():
         topics = database.fetch_topics()
         username = session["username"]
         return render_template("forum.html", topics=topics, username=username)
-    #if request.method == "POST":
-        #topic_link = 
 
 @app.route("/create_topic", methods=["GET", "POST"])
 def create_topic():
@@ -56,16 +54,26 @@ def create_topic():
         topic = request.form["topic"] 
         message = request.form["message"]
         user_id = session["user_id"]
+        
         database.insert_topic(topic, user_id)
         topic_id = database.fetch_topic_id(topic)
-        print(topic_id)
         database.insert_message(message, topic_id, user_id)
         return redirect("/forum")
     return render_template("create_topic.html")
 
-
-
 @app.route("/topic/<topic_id>")
 def view_topic(topic_id):
     comments = database.fetch_comments_by_topic(topic_id)
-    return render_template("comments.html", comments=comments)
+    return render_template("comments.html", comments=comments, topic_id=topic_id)
+
+@app.route("/add_comment", methods=["GET", "POST"])
+def add_comment():
+    if request.method == "POST":
+        message = request.form["message"]
+        user_id = session["user_id"]
+        topic_id = request.form["topic_id"]
+        print(topic_id)
+        database.insert_message(message, topic_id, user_id)
+    comments = database.fetch_comments_by_topic(topic_id)
+    return render_template("comments.html", comments=comments, topic_id=topic_id)
+    

@@ -15,19 +15,19 @@ def insert_message(message, topic_id, user_id):
     return
 
 def fetch_topics():
-    sql = "SELECT topic, created_at FROM topics"
+    sql = "SELECT id, topic, created_at FROM topics"
     result = db.session.execute(sql)
     topics = result.fetchall()
     return topics
 
 def fetch_topic_id(topic):
-    sql = "SELECT id FROM topics where topic=:topic"
+    sql = "SELECT id FROM topics WHERE topic=:topic"
     result = db.session.execute(sql, {"topic":topic})
     topic_id = result.fetchone()[0]
     return topic_id
-    
-    
 
 def fetch_comments_by_topic(topic_id):
-    sql = "SELECT  FROM messages"
-    result = db.session.execute(sql)
+    sql = "SELECT content FROM messages WHERE topic_id=:topic_id"
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    comments = result.fetchall()
+    return comments

@@ -7,6 +7,7 @@
 <br>
 <br>
 {% for topic in topics %}
+
 <div class="topic_box">
 <div class="topic_link"><a href="/topic/{{ topic.id }}">{{ topic.topic }}</a></div><br> <!-- TODO link from every topic to comments of that topic-->
 by <strong><p style="color:rgb(36, 88, 241); display:inline;">{{ username }}</p></strong> <strong>created:</strong> {{topic.created_at.strftime("%d-%m-%Y %H:%M:%S")}}
