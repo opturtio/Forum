@@ -41,7 +41,7 @@ def logout():
 @app.route("/forum")
 def forum():
     if request.method == "GET":
-        topics = database.fetch_topic()
+        topics = database.fetch_topics()
         username = session["username"]
         return render_template("forum.html", topics=topics, username=username)
     #if request.method == "POST":
@@ -55,12 +55,17 @@ def create_topic():
     if request.method == "POST":
         topic = request.form["topic"] 
         message = request.form["message"]
-        database.insert_topic(topic)
-        database.insert_message(message)
+        user_id = session["user_id"]
+        database.insert_topic(topic, user_id)
+        topic_id = database.fetch_topic_id(topic)
+        print(topic_id)
+        database.insert_message(message, topic_id, user_id)
         return redirect("/forum")
     return render_template("create_topic.html")
 
-@app.route("/comments")
-def comments():
-    fetched_comments = database.fetch_comments()
-    return render_template("comments.html", fetched_comments=fetched_comments)
+
+
+@app.route("/topic/<topic_id>")
+def view_topic(topic_id):
+    comments = database.fetch_comments_by_topic(topic_id)
+    return render_template("comments.html", comments=comments)
