@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="static/forum.css">
+<!-- <link rel="stylesheet" href="static/forum.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
 {% if session.username %}
 
 <title>forum - {% block title %}{% endblock %}</title>
 
-<div class="mainbar">
-    <h1>Forum</h1>
-</div>
+<nav class="navbar navbar-dark" style="background-color: #1E62CA">
+    <a class="navbar-brand" href="/forum">Forum</a>
+    <a class="navbar-brand">Hello, {{ session.username }}</a>
+    <a class="btn btn-primary" href="/logout" role="button name="username"">Logout</a>
+</nav>
 
-<h4>Hello, {{ session.username }}</h4>
-
-<a href="/logout" name="username"><button>Logout</button></a>
 
 {% else %}
 {<a href="/login">Login</a>}
