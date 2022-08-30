@@ -3,15 +3,24 @@
 {% block title %}new_topic{% endblock %}
 
 {% block content %}
-
-<h1>Create new topic</h1>
-
+<br>
+<div class="header">
+    <h2>Create new topic</h2>
+</div>
+<br>
 <form action="/create_topic" method="POST">
-    <h3>New topic:</h3>
-    <input type="text" name="topic" minlength="2" maxlength="50">
-    <h4>First comment:</h4>
-    <textarea name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
-    <input type="submit" value="Post">
+    <div class="new_topic">
+        <h3>New topic:</h3>
+        <input type="text" name="topic" minlength="2" maxlength="90">
+    </div>
+    <div class="first_comment">
+        <h4>First comment:</h4>
+        <textarea name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
+    </div>
+    <input type="hidden" name="posts" value=1>
+    <div class="post">
+        <input class="btn btn-primary" maxlength = "10" type="submit" value="Post">
+    </div>
 </form>
     
 {% endblock %}

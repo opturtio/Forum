@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS topics (
     id SERIAL PRIMARY KEY,
     topic TEXT UNIQUE,
     user_id INTEGER REFERENCES users,
+    posts INTEGER,
     created_at TIMESTAMP
 );
 

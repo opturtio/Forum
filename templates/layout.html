@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- <link rel="stylesheet" href="static/forum.css"> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="static/forum.css">
 
 {% if session.username %}
 
@@ -14,7 +14,7 @@
 
 
 {% else %}
-{<a href="/login">Login</a>}
+{<a href="/login">Login</a>} <!-- FIXME fix this -->
 {% endif %}
 
 {% block content %}{% endblock %}

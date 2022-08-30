@@ -3,18 +3,42 @@
 {% block title %}forum{% endblock %}
 
 {% block content %}
-<a href="{{ url_for('create_topic') }}"><button>Create topic</button></a>
 <br>
-<br>
-{% for topic in topics %}
-
-<div class="topic_box">
-<div class="topic_link"><a href="/topic/{{ topic.id }}">{{ topic.topic }}</a></div><br> <!-- TODO link from every topic to comments of that topic-->
-by <strong><p style="color:rgb(36, 88, 241); display:inline;">{{ username }}</p></strong> <strong>created:</strong> {{topic.created_at.strftime("%d-%m-%Y %H:%M:%S")}}
+<div class="container-fluid">
+    <a class="btn btn-primary" href="{{ url_for('create_topic') }}" role="button">Create topic</a>
+    <br><br>
+    <h2 class="h4">Forum topics</h2>
 </div>
-<br>
-<br>
+{% for topic in topics %}
+    <div class="container-fluid">
+        <table class="table table-striped table-bordered">
+            <thead bgcolor="#4EA7F1" color="#ffffff">
+                <tr>
+                    <th class="col-sm-7">Topic</th>
+                    <th class="col-sm-1">Posts</th>
+                    <th class="col-sm-1">Author</th>
+                    <th class="col-sm-2">Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="/topic/{{ topic.id }}">{{ topic.topic }}</a>
+                    </td>
+                    <td class="text-center">
+                        {{ topic.posts }}
+                    </td>
+                    <td class="text-center">
+                            <strong><p style="color:rgb(36, 88, 241); display:inline;">{{ username }}</p></strong>
+                    </td>
+                    <td class="text-center">
+                            {{topic.created_at.strftime("%d-%m-%Y %H:%M:%S")}}
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
 {% endfor %}
 {% endblock %}
-
-http://localhost:8080/topic/567348563784
