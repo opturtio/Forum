@@ -7,9 +7,9 @@ def insert_topic(topic, user_id, posts):
     db.session.commit()
     return
     
-def insert_message(message, topic_id, user_id):
-    sql = "INSERT INTO messages (content, topic_id, user_id, created_at) VALUES (:content, :topic_id, :user_id, NOW())"
-    db.session.execute(sql, {"content":message, "topic_id":topic_id, "user_id":user_id})
+def insert_message(message, topic_id, user_id, username):
+    sql = "INSERT INTO messages (content, topic_id, user_id, username, created_at) VALUES (:content, :topic_id, :user_id, :username, NOW())"
+    db.session.execute(sql, {"content":message, "topic_id":topic_id, "user_id":user_id, "username":username})
     db.session.commit()
     return
 
@@ -26,7 +26,7 @@ def fetch_topic_id(topic):
     return topic_id
 
 def fetch_comments_by_topic(topic_id):
-    sql = "SELECT content FROM messages WHERE topic_id=:topic_id"
+    sql = "SELECT username, created_at, content FROM messages WHERE topic_id=:topic_id"
     result = db.session.execute(sql, {"topic_id":topic_id})
     comments = result.fetchall()
     return comments

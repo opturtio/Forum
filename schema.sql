@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS messages (
     content TEXT,
     topic_id INTEGER REFERENCES topics,
     user_id INTEGER REFERENCES users,
+    username TEXT,
     created_at TIMESTAMP
 );
 

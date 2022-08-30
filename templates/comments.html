@@ -9,11 +9,20 @@
         display: inline-block;
         margin: 5px 5px 5px 5px;
     }
+
+    .author {
+        margin: 5px 5px 5px 5px;
+    }
+
+    .posted {
+        display: inline-block;
+    }
+
 </style>
 
 <div class="container">
     <br>
-    <h2>Comments</h2>
+    <h2 class="text-left">Comments</h2>
     <br>
 </div>
 
@@ -22,13 +31,16 @@
         <div class="col-8">
             <div class="container"></div>
             {% for comment in comments %}
-                <div class="container-fluid">
+                <div class="container-fluid border">
                     <div class="row">
-                        <div class="col bg-success text-white">
-                            Author: Posted:
+                        <div class="col bg-primary text-white">
+                            Author: {{ comment.username }} 
+                        </div>
+                        <div class="col bg-primary text-white d-inline-block text-right">
+                            Posted: {{ comment.created_at.strftime("%d-%m-%Y %H:%M:%S") }}
                         </div>
                         <div class="w-100"></div>
-                        <div class="col bg-primary text-white">
+                        <div class="col bg-light text-primary">
                             <p>{{ comment.content }}</p>
                             <br>
                             <br>
@@ -40,10 +52,10 @@
         </div>
         <div class="col-4">
             <form action="{{url_for('add_comment')}}" method="POST">
-                <h3>Write comment:</h3>
-                <textarea rows=10" class="form-control border-primary " name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
+                <h4 class="text-center">Write comment:</h4>
+                <textarea rows=10" class="form-control border-primary text-primary" name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
                 <input type="hidden" name="topic_id" value={{ topic_id }} name="username" {{ username }}>
-                <input class="btn btn-primary" type="submit" value="Comment">
+                <div class="text-right"><input class="btn btn-primary" type="submit" value="Comment"></div>
             </form>
         </div>
     </div>

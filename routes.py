@@ -54,11 +54,12 @@ def create_topic():
         topic = request.form["topic"] 
         message = request.form["message"]
         user_id = session["user_id"]
+        username = session["username"]
         posts = request.form["posts"]
         
         database.insert_topic(topic, user_id, int(posts))
         topic_id = database.fetch_topic_id(topic)
-        database.insert_message(message, topic_id, user_id)
+        database.insert_message(message, topic_id, user_id, username)
         return redirect("/forum")
     return render_template("create_topic.html")
 
@@ -71,15 +72,14 @@ def view_topic(topic_id):
 def add_comment():
     if request.method == "POST":
         message = request.form["message"]
-        user_id = session["user_id"]
         topic_id = request.form["topic_id"]
+        user_id = session["user_id"]
+        username = session["username"]
         
-        
-        
-        database.insert_message(message, topic_id, user_id)
+        database.insert_message(message, topic_id, user_id, username)
         database.update_number_of_posts(topic_id)
     comments = database.fetch_comments_by_topic(topic_id)
     print(comments)
-    return render_template("comments.html", comments=comments, topic_id=topic_id, username=username)
+    return render_template("comments.html", comments=comments, topic_id=topic_id)
 
     
