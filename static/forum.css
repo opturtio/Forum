@@ -17,24 +17,38 @@ body {
 
 .new_topic {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 15px;
+    margin: 25px;
 }
 
 .first_comment {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 15px;
+    margin: 25px;
 }
 
 .post {
     margin-left: 70px;
 }
 
+.flash_messages {
+    color:crimson;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    margin-top: 10px;
+    margin-left: 10px;
+    animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+    45% {
+      opacity: 0;
+    }
+}
 
 input {
-    border: 2px solid rgba(4, 4, 184, 0.76);
+    border: 2px solid rgb(51, 103, 199);
     border-radius: 4px;
     border-width: 3px;
-    color:blue;
+    color:rgb(12, 58, 145);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -45,9 +59,9 @@ textarea {
     border-top-right-radius: 3%;
     max-width: 100%;
     margin: 15px;
-    border: 2px solid rgba(4, 4, 184, 0.76);
+    border: 2px solid rgb(51, 103, 199);
     border-width: 3px;
-    color:blue;
+    color:rgb(12, 58, 145);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 17px;
 }

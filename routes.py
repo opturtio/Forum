@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, session, url_for
+from flask import render_template, request, redirect, session, flash, url_for
 from app import app
-import users, database
+import users, database, check_inputs
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -57,6 +57,8 @@ def create_topic():
         username = session["username"]
         posts = request.form["posts"]
         
+        if check_inputs.create_topic(topic, message):
+            return render_template("create_topic.html")
         database.insert_topic(topic, user_id, int(posts))
         topic_id = database.fetch_topic_id(topic)
         database.insert_message(message, topic_id, user_id, username)
@@ -76,10 +78,12 @@ def add_comment():
         user_id = session["user_id"]
         username = session["username"]
         
+        if check_inputs.add_comment(message):
+            print("menee tähän 1")
+            comments = database.fetch_comments_by_topic(topic_id)
+            render_template("comments.html", comments=comments, topic_id=topic_id)
+        
         database.insert_message(message, topic_id, user_id, username)
         database.update_number_of_posts(topic_id)
     comments = database.fetch_comments_by_topic(topic_id)
-    print(comments)
     return render_template("comments.html", comments=comments, topic_id=topic_id)
-
-    

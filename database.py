@@ -1,6 +1,14 @@
 from flask import session
 from db import db
 
+def check_topic_name(topic):
+    sql = "SELECT COUNT(*) FROM topics WHERE topic=:topic"
+    result = db.session.execute(sql, {"topic":topic})
+    amount = result.fetchone()[0]
+    if amount > 0:
+        return True
+    return False
+
 def insert_topic(topic, user_id, posts):
     sql = "INSERT INTO topics (topic, user_id, posts, created_at) VALUES (:topic, :user_id, :posts, NOW())"
     db.session.execute(sql, {"topic":topic, "user_id":user_id, "posts":posts})
@@ -38,6 +46,6 @@ def fetch_number_of_posts(topic_id):
     return posts
 
 def update_number_of_posts(topic_id):
-    sql = "UPDATE topics SET posts=posts+1 WHERE id=:topic_id" #FIXME posts doesnt increace
+    sql = "UPDATE topics SET posts=posts+1 WHERE id=:topic_id" #FIXME posts doesn't increace
     db.session.execute(sql, {"topic_id":topic_id})
     return
