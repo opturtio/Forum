@@ -8,8 +8,13 @@
 
 <nav class="navbar navbar-dark" style="background-color: #1E62CA">
     <a class="navbar-brand" href="/forum">Forum</a>
+    <a class="btn btn-primary" href="/statistics" role="button">Statistics</a>
     <a class="navbar-brand">Hello, {{ session.username }}</a>
-    <a class="btn btn-primary" href="/logout" role="button name="username"">Logout</a>
+    <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+    <form class="form-inline" action="/search" method="GET">
+        <input type="text" class="form-control" name="query" placeholder="Search" aria-label="Search">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
 </nav>
 
 

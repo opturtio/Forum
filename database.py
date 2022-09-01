@@ -1,5 +1,6 @@
 from flask import session
 from db import db
+from statistics import comments
 
 def check_topic_name(topic):
     sql = "SELECT COUNT(*) FROM topics WHERE topic=:topic"
@@ -49,3 +50,9 @@ def update_number_of_posts(topic_id):
     sql = "UPDATE topics SET posts=posts+1 WHERE id=:topic_id" #FIXME posts doesn't increace
     db.session.execute(sql, {"topic_id":topic_id})
     return
+
+def search(query):
+    sql = "SELECT content, username, created_at FROM messages WHERE content LIKE :query"
+    result = db.session.execute(sql, {"query": "%"+query+"%"})
+    comments = result.fetchall()
+    return comments

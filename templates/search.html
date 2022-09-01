@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}forum{% endblock %}
+
+{% block content %}
+<br>
+<div class="container-fluid">
+    <a class="btn btn-primary" href="{{ url_for('create_topic') }}" role="button">Create topic</a>
+    <br><br>
+    <h2 class="h4">Comments</h2>
+</div>
+{% for comment in comments %} <!-- FIXME doesnt work right -->
+    <div class="container-fluid">
+        <table class="table table-striped table-bordered">
+            <thead bgcolor="#4EA7F1" color="#ffffff">
+                <tr>
+                    <th class="col-3">Author</th>
+                    <th class="col-3">Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">
+                        <strong><p style="color:rgb(36, 88, 241); display:inline;">{{ comment.username }}</p></strong>
+                    </td>
+                    <td class="text-center">
+                        {{ comment.created_at.strftime("%d-%m-%Y %H:%M:%S") }}
+                    </td>
+                    <div class="col bg-light text-primary">
+                        <p>{{ comment.content }}</p>
+                        <br>
+                        <br>
+                    </div>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+{% endfor %}
+{% endblock %}

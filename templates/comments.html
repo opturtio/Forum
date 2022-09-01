@@ -51,6 +51,10 @@
             {% endfor %}
         </div>
         <div class="col-4">
+            <a class="btn btn-primary float-right" role="button">Delete topic</a>
+            <a class="btn btn-primary float-righ" href="{{ url_for('create_topic') }}" role="button">Create topic</a>
+            <br>
+            <br>
             <form action="{{url_for('add_comment')}}" method="POST">
                 <h4 class="text-center">Write comment:</h4>
                 {% with messages = get_flashed_messages() %}

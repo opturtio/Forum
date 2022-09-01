@@ -1,3 +1,4 @@
+from tracemalloc import Statistic
 from flask import render_template, request, redirect, session, flash, url_for
 from app import app
 import users, database, check_inputs
@@ -13,6 +14,7 @@ def index():
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username, password):
+            database.insert_visitor(username)
             return redirect("/forum")
         else:
             #TODO here javascript if something went wrong
@@ -70,6 +72,11 @@ def view_topic(topic_id):
     comments = database.fetch_comments_by_topic(topic_id)
     return render_template("comments.html", comments=comments, topic_id=topic_id)
 
+#TODO create delete topic
+@app.route("/delete")
+def delete_topic():
+    return redirect("/forum")
+
 @app.route("/add_comment", methods=["GET", "POST"])
 def add_comment():
     if request.method == "POST":
@@ -78,12 +85,27 @@ def add_comment():
         user_id = session["user_id"]
         username = session["username"]
         
-        if check_inputs.add_comment(message):
-            print("menee tähän 1")
-            comments = database.fetch_comments_by_topic(topic_id)
-            render_template("comments.html", comments=comments, topic_id=topic_id)
-        
+    if check_inputs.add_comment(message):
+        comments = database.fetch_comments_by_topic(topic_id)
+        render_template("comments.html", comments=comments, topic_id=topic_id)
+    else:
         database.insert_message(message, topic_id, user_id, username)
         database.update_number_of_posts(topic_id)
     comments = database.fetch_comments_by_topic(topic_id)
     return render_template("comments.html", comments=comments, topic_id=topic_id)
+
+@app.route("/search")
+def search():
+    query = request.args["query"]
+    comments = database.search(query)
+    return render_template("search.html", comments=comments)
+    
+
+app.route("/statistics") #FIXME the link doesnt work
+def statistics():
+    amount_of_users = statistics.users()
+    amount_of_topics = statistics.topics()
+    amount_of_comments = statistics.comments()
+    
+    return render_template("statistics.html", amount_of_users=amount_of_users, 
+                           amount_of_topics=amount_of_topics, amount_of_comments=amount_of_comments)
