@@ -2,6 +2,12 @@ from flask import session
 from db import db
 from statistics import comments
 
+def insert_visitor(username):
+    sql = "INSERT INTO visitors (username, time) VALUES (:username, NOW())"
+    db.session.execute(sql, {"username":username})
+    db.session.commit()
+    return
+
 def check_topic_name(topic):
     sql = "SELECT COUNT(*) FROM topics WHERE topic=:topic"
     result = db.session.execute(sql, {"topic":topic})
@@ -23,7 +29,7 @@ def insert_message(message, topic_id, user_id, username):
     return
 
 def fetch_topics():
-    sql = "SELECT id, topic, posts, created_at FROM topics"
+    sql = "SELECT t.*, count(m.id) as posts FROM topics t INNER JOIN messages m ON t.id = m.topic_id GROUP BY t.id;"
     result = db.session.execute(sql)
     topics = result.fetchall()
     return topics
@@ -46,13 +52,9 @@ def fetch_number_of_posts(topic_id):
     posts = result.fetchone()[0]
     return posts
 
-def update_number_of_posts(topic_id):
-    sql = "UPDATE topics SET posts=posts+1 WHERE id=:topic_id" #FIXME posts doesn't increace
-    db.session.execute(sql, {"topic_id":topic_id})
-    return
-
 def search(query):
-    sql = "SELECT content, username, created_at FROM messages WHERE content LIKE :query"
+    sql = "SELECT content, username, created_at FROM messages m WHERE content LIKE :query"
+    #sql = "SELECT topics.topic, messages.content, messages.username, messages.created_at FROM messages JOIN topics ON content LIKE :query AND m.topic_id=t.id GROUP BY t.id"
     result = db.session.execute(sql, {"query": "%"+query+"%"})
     comments = result.fetchall()
     return comments

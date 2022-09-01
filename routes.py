@@ -1,7 +1,7 @@
 from tracemalloc import Statistic
 from flask import render_template, request, redirect, session, flash, url_for
 from app import app
-import users, database, check_inputs
+import users, database, check_inputs, statistics as stats
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -90,7 +90,6 @@ def add_comment():
         render_template("comments.html", comments=comments, topic_id=topic_id)
     else:
         database.insert_message(message, topic_id, user_id, username)
-        database.update_number_of_posts(topic_id)
     comments = database.fetch_comments_by_topic(topic_id)
     return render_template("comments.html", comments=comments, topic_id=topic_id)
 
@@ -100,12 +99,15 @@ def search():
     comments = database.search(query)
     return render_template("search.html", comments=comments)
     
-
-app.route("/statistics") #FIXME the link doesnt work
+@app.route("/statistics")
 def statistics():
-    amount_of_users = statistics.users()
-    amount_of_topics = statistics.topics()
-    amount_of_comments = statistics.comments()
-    
-    return render_template("statistics.html", amount_of_users=amount_of_users, 
-                           amount_of_topics=amount_of_topics, amount_of_comments=amount_of_comments)
+    amount_of_users = stats.users_amount()
+    usernames = stats.usernames()
+    amount_of_topics = stats.topics()
+    amount_of_comments = stats.comments()
+    amount_of_visitors = stats.visitors()
+    return render_template("statistics.html", amount_of_users=amount_of_users,
+                           usernames=usernames, 
+                           amount_of_topics=amount_of_topics, 
+                           amount_of_comments=amount_of_comments,
+                           amount_of_visitors=amount_of_visitors)

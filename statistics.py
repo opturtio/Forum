@@ -1,10 +1,16 @@
 from db import db
 
-def users():
+def users_amount():
     sql = "SELECT COUNT(id) FROM users"
     result = db.session.execute(sql)
     users = result.fetchone()[0]
     return users
+
+def usernames():
+    sql = "SELECT username FROM users"
+    result = db.session.execute(sql)
+    usernames = result.fetchall()
+    return usernames
 
 def topics():
     sql = "SELECT COUNT(id) FROM topics"
@@ -18,3 +24,8 @@ def comments():
     comments = result.fetchone()[0]
     return comments
 
+def visitors():
+    sql = "SELECT count(id) FROM visitors"
+    result = db.session.execute(sql)
+    visitors = result.fetchone()[0]
+    return visitors

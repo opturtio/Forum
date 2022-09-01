@@ -4,4 +4,19 @@
 
 {% block content %}
 
-<p>Terve</p>
+<br>
+<div class="container-fluid">
+    <a class="btn btn-primary" href="{{ url_for('create_topic') }}" role="button">Create topic</a>
+    <br><br>
+    <h2 class="h4">Statistics</h2>
+</div>
+
+Number of visitors: {{ amount_of_visitors}} <br>
+Number of users: {{ amount_of_users }} <br>
+Number of topics: {{ amount_of_topics }} <br>
+Number of comments: {{ amount_of_comments }} <br>
+Users: <br>
+{% for user in usernames %}
+    {{ user.username }} <br>
+{% endfor %}
+{% endblock %}

@@ -26,15 +26,17 @@
                     <td class="text-center">
                         {{ comment.created_at.strftime("%d-%m-%Y %H:%M:%S") }}
                     </td>
-                    <div class="col bg-light text-primary">
-                        <p>{{ comment.content }}</p>
-                        <br>
-                        <br>
-                    </div>
                 </tr>
                 
             </tbody>
         </table>
+        <div class="col border border-primary bg-light text-primary">
+            <p>{{ comment.content }}</p>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
     </div>
 
 {% endfor %}

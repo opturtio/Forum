@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS topics CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
+DROP TABLE IF EXISTS visitors CASCADE;
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -12,7 +13,6 @@ CREATE TABLE IF NOT EXISTS topics (
     id SERIAL PRIMARY KEY,
     topic TEXT UNIQUE,
     user_id INTEGER REFERENCES users,
-    posts INTEGER,
     created_at TIMESTAMP
 );
 
@@ -25,3 +25,8 @@ CREATE TABLE IF NOT EXISTS messages (
     created_at TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS visitors (
+    id SERIAL PRIMARY KEY,
+    username TEXT,
+    time TIMESTAMP
+);
