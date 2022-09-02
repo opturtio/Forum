@@ -1,10 +1,10 @@
-from tracemalloc import Statistic
 from flask import render_template, request, redirect, session, flash, url_for
 from app import app
 import users, database, check_inputs, statistics as stats
 
 
 @app.route("/", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
         #TODO check if user is logged in

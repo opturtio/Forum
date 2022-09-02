@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, flash
+from flask import flash
 import database
 
 def create_topic(topic, message):

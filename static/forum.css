@@ -11,22 +11,24 @@ body {
 
 .header {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 15px;
+    margin-left: 35px;
 
 }
 
 .new_topic {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 15px;
+    margin-left: 35px;
 }
 
 .first_comment {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 25px;
+    margin: 20px;
+    margin-left: 35px;
+    margin-bottom: 5px;
 }
 
 .post {
-    margin-left: 70px;
+    margin-left: 400px;
 }
 
 .flash_messages {
@@ -58,7 +60,7 @@ textarea {
     border-top-left-radius: 3%;
     border-top-right-radius: 3%;
     max-width: 100%;
-    margin: 15px;
+    margin-top: 10px;
     border: 2px solid rgb(51, 103, 199);
     border-width: 3px;
     color:rgb(12, 58, 145);

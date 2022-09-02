@@ -1,6 +1,6 @@
 body {
-    background-image: linear-gradient(45deg, lightblue, blue);
-    background-size: 150% 1000%;
+    background-image: linear-gradient(45deg, rgb(8, 138, 182), rgb(16, 5, 170));
+    background-size: 50% 400%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -10,7 +10,7 @@ body {
 }
 
 .all {
-    background-image: linear-gradient(to bottom left, rgb(23, 38, 250), rgb(84, 250, 222));
+    background-image: -webkit-linear-gradient(top, rgba(10, 23, 207, 0.6) 0%, rgb(76, 85, 211) 30%, rgb(113, 93, 231) 51%, rgb(255, 255, 255) 100%);
     border-bottom-left-radius: 30%;
     border-bottom-right-radius: 30%;
     border-top-left-radius: 30%;
@@ -60,4 +60,85 @@ body {
     display: flex;
     align-items: start;
     justify-content: center;
+}
+
+.login-button {
+    margin: auto;
+    margin-top: 30px;
+    margin-right: 29px;
+    width: 50%;
+}
+
+p {
+    color: #fff;
+}
+
+input {
+	color: #fff;
+	border-radius: 15px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-weight: 500;
+    font-size: large;
+    
+    border: 1px solid #000000;
+    border-radius: 8px;
+    border-width: 100%;
+
+	padding-top: 1%;
+    padding-left: 1%;
+	padding-bottom: 1%;
+	background-color: #1b1fe9;	
+	
+    background-image: -webkit-linear-gradient(top, rgba(10, 23, 207, 0.6) 0%, rgb(76, 85, 211) 30%, rgb(113, 93, 231) 51%, rgb(255, 255, 255) 100%);
+   
+}
+
+input[type=text] {
+    padding-left: 10px;
+}
+
+input[type=submit] {
+	color: #fff;
+	text-shadow: 2px 2px 2px rgb(0, 0, 0);
+	border-radius: 15px;
+	font-family: "Montserrat";
+	font-weight: 500;
+    font-size: large;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	background-color: #1b1fe9;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    border-width: 55%;
+    background-image: -webkit-linear-gradient(top, rgba(10, 23, 207, 0.6) 0%, rgb(76, 85, 211) 30%, rgb(113, 93, 231) 51%, rgb(255, 255, 255) 100%);
+}
+
+input[type=submit]:hover {
+	background-color: #0f8dc7c0;
+    font-size: larger;
+}
+
+input:hover {
+	background-color: #020b86c0;
+}
+
+button {
+	color: #fff;
+	text-shadow: 2px 2px 2px rgb(0, 0, 0);
+	border-radius: 15px;
+	font-family: "Montserrat";
+	font-weight: 500;
+    font-size: large;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	background-color: #1b1fe9;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    border-width: 55%;
+    background-image: -webkit-linear-gradient(top, rgba(10, 23, 207, 0.6) 0%, rgb(76, 85, 211) 30%, rgb(113, 93, 231) 51%, rgb(255, 255, 255) 100%);
+}
+
+button:hover {
+	background-color: #0f8dc7c0;
+    font-size: 102%;
 }
