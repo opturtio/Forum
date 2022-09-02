@@ -30,3 +30,4 @@ CREATE TABLE IF NOT EXISTS visitors (
     username TEXT,
     time TIMESTAMP
 );
+

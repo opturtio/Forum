@@ -15,10 +15,10 @@ def check_topic_name(topic):
     if amount > 0:
         return True
     return False
-
-def insert_topic(topic, user_id, posts):
-    sql = "INSERT INTO topics (topic, user_id, posts, created_at) VALUES (:topic, :user_id, :posts, NOW())"
-    db.session.execute(sql, {"topic":topic, "user_id":user_id, "posts":posts})
+###
+def insert_topic(topic, user_id):
+    sql = "INSERT INTO topics (topic, user_id, created_at) VALUES (:topic, :user_id, NOW())"
+    db.session.execute(sql, {"topic":topic, "user_id":user_id})
     db.session.commit()
     return
     

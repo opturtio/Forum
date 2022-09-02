@@ -57,11 +57,10 @@ def create_topic():
         message = request.form["message"]
         user_id = session["user_id"]
         username = session["username"]
-        posts = request.form["posts"]
-        
+
         if check_inputs.create_topic(topic, message):
             return render_template("create_topic.html")
-        database.insert_topic(topic, user_id, int(posts))
+        database.insert_topic(topic, user_id)
         topic_id = database.fetch_topic_id(topic)
         database.insert_message(message, topic_id, user_id, username)
         return redirect("/forum")
