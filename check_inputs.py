@@ -71,3 +71,21 @@ def add_comment(message):
         flash("Space is not a comment, try again!")
         alert_message = True
     return alert_message
+
+def check_search(query):
+    if query == "":
+        flash("Empty search, try again!")
+        return False
+    return True
+
+def check_vote(voter, candidate):
+    if candidate == None:
+        flash("Choose your candidate!")
+        return True
+    if voter == candidate:
+        flash("You cannot vote yourself!")
+        return True
+    if database.check_voter(voter):
+        flash("You have already voted!")
+        return True
+    return False

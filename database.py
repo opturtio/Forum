@@ -1,6 +1,4 @@
-from flask import session
 from db import db
-from statistics import comments
 
 def insert_visitor(username):
     sql = "INSERT INTO visitors (username, time) VALUES (:username, NOW())"
@@ -53,8 +51,21 @@ def fetch_number_of_posts(topic_id):
     return posts
 
 def search(query):
-    #sql = "SELECT content, username, created_at FROM messages m WHERE content LIKE :query"
     sql = "SELECT M.content, M.username, M.created_at, T.topic FROM messages M INNER JOIN topics T ON content LIKE :query AND m.topic_id=t.id"
     result = db.session.execute(sql, {"query": "%"+query+"%"})
     comments = result.fetchall()
     return comments
+
+def insert_candidate(candidate, voter):
+    sql = "INSERT INTO votes (candidate, voter) VALUES (:candidate, :voter)"
+    db.session.execute(sql, {"candidate":candidate, "voter":voter})
+    db.session.commit()
+    return
+
+def check_voter(voter):
+    sql = "SELECT COUNT(*) FROM votes WHERE voter=:voter"
+    result = db.session.execute(sql, {"voter":voter})
+    amount = result.fetchone()[0]
+    if amount > 0:
+        return True
+    return False

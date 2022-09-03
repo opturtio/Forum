@@ -3,6 +3,16 @@
 {% block title %}forum{% endblock %}
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="flash_messages">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <br>
 <div class="container-fluid">
     <a class="btn btn-primary" href="{{ url_for('create_topic') }}" role="button">Create topic</a>

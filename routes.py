@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, flash, url_for
+from flask import render_template, request, redirect, session, url_for
 from app import app
 import users, database, check_inputs, statistics as stats
 
@@ -7,7 +7,7 @@ import users, database, check_inputs, statistics as stats
 @app.route("/login", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        #TODO check if user is logged in
+        # TODO check if user have logged in
         return render_template("index.html")
     
     if request.method == "POST":
@@ -93,8 +93,22 @@ def add_comment():
 @app.route("/search")
 def search():
     query = request.args["query"]
+    if not check_inputs.check_search(query):
+        return redirect("/forum")
     comments = database.search(query)
     return render_template("search.html", comments=comments)
+
+@app.route("/vote", methods=["GET", "POST"])
+def vote():
+    if request.method == "POST":
+        candidate = request.form.get("candidate")
+        voter = session["username"]
+        print(candidate)
+        if check_inputs.check_vote(voter, candidate):
+            return redirect("/vote")
+        database.insert_candidate(candidate, voter)
+    usernames = stats.usernames()
+    return render_template("vote.html", usernames=usernames)
     
 @app.route("/statistics")
 def statistics():
@@ -103,8 +117,10 @@ def statistics():
     amount_of_topics = stats.topics()
     amount_of_comments = stats.comments()
     amount_of_visitors = stats.visitors()
+    most_votes = stats.most_votes()
     return render_template("statistics.html", amount_of_users=amount_of_users,
                            usernames=usernames, 
                            amount_of_topics=amount_of_topics, 
                            amount_of_comments=amount_of_comments,
-                           amount_of_visitors=amount_of_visitors)
+                           amount_of_visitors=amount_of_visitors,
+                           most_votes=most_votes)
