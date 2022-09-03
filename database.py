@@ -53,8 +53,8 @@ def fetch_number_of_posts(topic_id):
     return posts
 
 def search(query):
-    sql = "SELECT content, username, created_at FROM messages m WHERE content LIKE :query"
-    #sql = "SELECT topics.topic, messages.content, messages.username, messages.created_at FROM messages JOIN topics ON content LIKE :query AND m.topic_id=t.id GROUP BY t.id"
+    #sql = "SELECT content, username, created_at FROM messages m WHERE content LIKE :query"
+    sql = "SELECT M.content, M.username, M.created_at, T.topic FROM messages M INNER JOIN topics T ON content LIKE :query AND m.topic_id=t.id"
     result = db.session.execute(sql, {"query": "%"+query+"%"})
     comments = result.fetchall()
     return comments

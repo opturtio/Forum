@@ -16,9 +16,7 @@ def index():
         if users.login(username, password):
             database.insert_visitor(username)
             return redirect("/forum")
-        else:
-            #TODO here javascript if something went wrong
-            return redirect("/")
+        return redirect("/")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -30,7 +28,7 @@ def signup():
         password = request.form["password"]
         password2 = request.form["password2"]
 
-        if not check_inputs.check_signup_form(username, password, password2): #FIXME HERE
+        if not check_inputs.check_signup_form(username, password, password2):
             users.signup(username, password)
             return redirect("/")
     return redirect("/signup")
