@@ -13,10 +13,10 @@ def check_topic_name(topic):
     if amount > 0:
         return True
     return False
-###
-def insert_topic(topic, user_id):
-    sql = "INSERT INTO topics (topic, user_id, created_at) VALUES (:topic, :user_id, NOW())"
-    db.session.execute(sql, {"topic":topic, "user_id":user_id})
+
+def insert_topic(topic, user_id, username):
+    sql = "INSERT INTO topics (topic, user_id, username, created_at) VALUES (:topic, :user_id, :username, NOW())"
+    db.session.execute(sql, {"topic":topic, "user_id":user_id, "username":username})
     db.session.commit()
     return
     
@@ -27,7 +27,7 @@ def insert_message(message, topic_id, user_id, username):
     return
 
 def fetch_topics():
-    sql = "SELECT t.*, count(m.id) as posts FROM topics t INNER JOIN messages m ON t.id = m.topic_id GROUP BY t.id;"
+    sql = "SELECT t.*, count(m.id) as posts FROM topics t INNER JOIN messages m ON t.id = m.topic_id GROUP BY t.id"
     result = db.session.execute(sql)
     topics = result.fetchall()
     return topics
@@ -49,6 +49,20 @@ def fetch_number_of_posts(topic_id):
     result = db.session.execute(sql, {"topic_id":topic_id})
     posts = result.fetchone()[0]
     return posts
+
+def check_topic_username_relation(username, topic_id):
+    sql = "SELECT username FROM topics t WHERE t.id=:topic_id"
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    author = result.fetchone()[0]
+    if username == author:
+        return True
+    return False
+
+def delete_topic(topic_id):
+    sql = "DELETE FROM topics t WHERE t.id=:topic_id"
+    db.session.execute(sql, {"topic_id":topic_id})
+    db.session.commit()
+    return
 
 def search(query):
     sql = "SELECT M.content, M.username, M.created_at, T.topic FROM messages M INNER JOIN topics T ON content LIKE :query AND m.topic_id=t.id"

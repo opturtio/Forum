@@ -17,7 +17,6 @@
     .posted {
         display: inline-block;
     }
-
 </style>
 
 <div class="container">
@@ -51,8 +50,13 @@
             {% endfor %}
         </div>
         <div class="col-4">
-            <a class="btn btn-primary float-right" role="button">Delete topic</a>
-            <a class="btn btn-primary float-righ" href="{{ url_for('create_topic') }}" role="button">Create topic</a>
+            <div class="button-group">
+                <form action="/delete" method="post">
+                    <button type="submit" class="btn btn-primary float-right">Delete Topic</button>
+                    <input type="hidden" name="topic_id_delete" value={{ topic_id }}>
+                </form>
+                <a class="btn btn-primary float-left" href="{{ url_for('create_topic') }}" role="button">Create topic</a>
+            </div>
             <br>
             <br>
             <form action="{{url_for('add_comment')}}" method="POST">
@@ -67,7 +71,7 @@
                     {% endif %}
                 {% endwith %}
                 <textarea rows=10" class="form-control border-primary text-primary" name="message" rows="15" cols="50" minlength="1" maxlength="5000"></textarea>
-                <input type="hidden" name="topic_id" value={{ topic_id }} name="username" {{ username }}>
+                <input type="hidden" name="topic_id" value={{ topic_id }}>
                 <br>
                 <div class="text-right"><input class="btn btn-primary" type="submit" value="Comment"></div>
             </form>

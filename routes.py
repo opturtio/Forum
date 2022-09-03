@@ -58,7 +58,7 @@ def create_topic():
 
         if check_inputs.create_topic(topic, message):
             return render_template("create_topic.html")
-        database.insert_topic(topic, user_id)
+        database.insert_topic(topic, user_id, username)
         topic_id = database.fetch_topic_id(topic)
         database.insert_message(message, topic_id, user_id, username)
         return redirect("/forum")
@@ -69,10 +69,13 @@ def view_topic(topic_id):
     comments = database.fetch_comments_by_topic(topic_id)
     return render_template("comments.html", comments=comments, topic_id=topic_id)
 
-#TODO create delete topic
-@app.route("/delete")
+@app.route("/delete", methods=["GET", "POST"])
 def delete_topic():
-    return redirect("/forum")
+    topic_id = request.form["topic_id_delete"]
+    username = session["username"]
+    if check_inputs.delete_topic(username, topic_id):
+        return redirect("/forum")
+    return redirect("/add_comment")
 
 @app.route("/add_comment", methods=["GET", "POST"])
 def add_comment():

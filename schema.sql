@@ -13,15 +13,16 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS topics (
     id SERIAL PRIMARY KEY,
     topic TEXT UNIQUE,
-    user_id INTEGER REFERENCES users,
+    username TEXT,
+    user_id INTEGER REFERENCES users ON DELETE CASCADE,
     created_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS messages (
     id SERIAL PRIMARY KEY,
     content TEXT,
-    topic_id INTEGER REFERENCES topics,
-    user_id INTEGER REFERENCES users,
+    topic_id INTEGER REFERENCES topics ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users ON DELETE CASCADE,
     username TEXT,
     created_at TIMESTAMP
 );
@@ -35,5 +36,5 @@ CREATE TABLE IF NOT EXISTS visitors (
 CREATE TABLE IF NOT EXISTS votes (
     id SERIAL PRIMARY KEY,
     candidate TEXT,
-    voter TEXT
+    voter TEXT UNIQUE
 );

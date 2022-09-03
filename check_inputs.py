@@ -62,6 +62,13 @@ def create_topic(topic, message):
         alert_message = True
     return alert_message
 
+def delete_topic(username, topic_id):
+    if database.check_topic_username_relation(username, topic_id):
+        database.delete_topic(topic_id)
+        return True
+    flash("You cannot delete this topic!")
+    return False
+
 def add_comment(message):
     alert_message = False
     if message == "":
