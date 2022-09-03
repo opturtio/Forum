@@ -28,6 +28,7 @@
         </div>
         <div class="post">
         <input class="btn btn-primary" maxlength = "10" type="submit" value="Post">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         </div>
     </form>
     

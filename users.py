@@ -1,4 +1,5 @@
 import check_inputs
+import secrets
 from flask import session, flash
 from werkzeug.security import generate_password_hash
 from db import db

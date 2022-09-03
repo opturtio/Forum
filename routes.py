@@ -1,3 +1,4 @@
+from os import abort
 from flask import render_template, request, redirect, session, url_for
 from app import app
 import users, database, check_inputs, statistics as stats
@@ -27,7 +28,6 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         password2 = request.form["password2"]
-
         if not check_inputs.check_signup_form(username, password, password2):
             users.signup(username, password)
             return redirect("/")
@@ -51,11 +51,12 @@ def create_topic():
         return render_template("create_topic.html")
     
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         topic = request.form["topic"] 
         message = request.form["message"]
         user_id = session["user_id"]
         username = session["username"]
-
         if check_inputs.create_topic(topic, message):
             return render_template("create_topic.html")
         database.insert_topic(topic, user_id, username)
@@ -80,11 +81,12 @@ def delete_topic():
 @app.route("/add_comment", methods=["GET", "POST"])
 def add_comment():
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         message = request.form["message"]
         topic_id = request.form["topic_id"]
         user_id = session["user_id"]
         username = session["username"]
-        
     if check_inputs.add_comment(message):
         comments = database.fetch_comments_by_topic(topic_id)
         render_template("comments.html", comments=comments, topic_id=topic_id)
