@@ -27,7 +27,7 @@ def insert_message(message, topic_id, user_id, username):
     return
 
 def fetch_topics():
-    sql = "SELECT t.*, count(m.id) as posts FROM topics t INNER JOIN messages m ON t.id = m.topic_id GROUP BY t.id"
+    sql = "SELECT t.*, count(m.id) as posts FROM topics t INNER JOIN messages m ON t.id = m.topic_id GROUP BY t.id ORDER BY t.id"
     result = db.session.execute(sql)
     topics = result.fetchall()
     return topics
