@@ -11,17 +11,27 @@
             <div class="header">
                 <h1>Forum</h1>
             </div>
-                <div class="user">
-                    <form action="/" method="POST">
-                        <p>Username:<br>
-                        <input type="text" name="username"></p>
-                        <p>Password:<br>
-                        <input type="password" name="password"></p>
-                        <div class="login-button">
-                            <input type="submit" value="Log in">
-                        </div>
-                    </form>
-                </div>
+            <div class="user">
+                <form action="/" method="POST">
+                    <p>Username:<br>
+                    <input type="text" name="username"></p>
+                    <p>Password:<br>
+                    <input type="password" name="password"></p>
+                    <div class="login-button">
+                        <input type="submit" value="Log in">
+                    </div>
+                </form>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash_messages">
+                        {% for message in messages %}
+                            <br>
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}      
             <div class="signup">
                 <div class="main_button">
                     <a href="signup" class="main_button"><button>Sign up</button></a>

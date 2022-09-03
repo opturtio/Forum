@@ -33,7 +33,6 @@ body {
 
 }
 
-
 .login {
     color:rgb(248, 246, 255);
     position: relative;
@@ -51,8 +50,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px auto;
-    
+    margin: 40px auto;  
 }
 
 .user {
@@ -65,8 +63,44 @@ body {
 .login-button {
     margin: auto;
     margin-top: 30px;
-    margin-right: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50%;
+}
+
+.main_button {
+    color: #fff;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    border-radius: 15px;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: large;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #1b1fe9;
+    border-radius: 8px;
+    border-width: 55%;
+    background-image: -webkit-linear-gradient(top, rgba(10, 23, 207, 0.6) 0%, rgb(76, 85, 211) 30%, rgb(113, 93, 231) 51%, rgb(255, 255, 255) 100%);
+    margin: auto;
+}
+
+.flash_messages {
+    color:crimson;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: x-small;
+    animation: blinker 2s linear infinite;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes blinker {
+    45% {
+      opacity: 0;
+    }
 }
 
 p {
@@ -79,18 +113,24 @@ input {
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	font-weight: 500;
     font-size: large;
-    
     border: 1px solid #000000;
     border-radius: 8px;
     border-width: 100%;
-
 	padding-top: 1%;
     padding-left: 1%;
 	padding-bottom: 1%;
 	background-color: #1b1fe9;	
-	
     background-image: -webkit-linear-gradient(top, rgba(10, 23, 207, 0.6) 0%, rgb(76, 85, 211) 30%, rgb(113, 93, 231) 51%, rgb(255, 255, 255) 100%);
    
+}
+input:focus { 
+    outline: none;
+    border-color: #0905f1;
+    box-shadow: 0 0 10px #1900ff;
+}
+
+input::selection {
+    color: rgb(3, 18, 230);
 }
 
 input[type=text] {

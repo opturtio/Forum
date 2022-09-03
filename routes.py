@@ -30,7 +30,7 @@ def signup():
         password = request.form["password"]
         password2 = request.form["password2"]
 
-        if users.check_signup_form(username, password, password2):
+        if not check_inputs.check_signup_form(username, password, password2): #FIXME HERE
             users.signup(username, password)
             return redirect("/")
     return redirect("/signup")
