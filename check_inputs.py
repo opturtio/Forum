@@ -1,8 +1,8 @@
+import secrets
 from flask import session, flash
+from werkzeug.security import check_password_hash
 from db import db
 import database
-import secrets
-from werkzeug.security import check_password_hash
 
 def check_login(username, password, user):
     if username == "" or username == " ":

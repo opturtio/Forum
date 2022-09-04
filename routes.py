@@ -1,16 +1,15 @@
 from os import abort
 from flask import render_template, request, redirect, session, url_for
+import users, database
+import check_inputs, statistics as stats
 from app import app
-import users, database, check_inputs, statistics as stats
 
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/login", methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        # TODO check if user have logged in
         return render_template("index.html")
-    
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -23,7 +22,6 @@ def index():
 def signup():
     if request.method == "GET":
         return render_template("signup.html")
-    
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -49,11 +47,10 @@ def forum():
 def create_topic():
     if request.method == "GET":
         return render_template("create_topic.html")
-    
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
-        topic = request.form["topic"] 
+        topic = request.form["topic"]
         message = request.form["message"]
         user_id = session["user_id"]
         username = session["username"]
@@ -114,7 +111,7 @@ def vote():
         database.insert_candidate(candidate, voter)
     usernames = stats.usernames()
     return render_template("vote.html", usernames=usernames)
-    
+
 @app.route("/statistics")
 def statistics():
     amount_of_users = stats.users_amount()
@@ -124,8 +121,8 @@ def statistics():
     amount_of_visitors = stats.visitors()
     most_votes = stats.most_votes()
     return render_template("statistics.html", amount_of_users=amount_of_users,
-                           usernames=usernames, 
-                           amount_of_topics=amount_of_topics, 
+                           usernames=usernames,
+                           amount_of_topics=amount_of_topics,
                            amount_of_comments=amount_of_comments,
                            amount_of_visitors=amount_of_visitors,
                            most_votes=most_votes)

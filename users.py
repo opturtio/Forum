@@ -1,8 +1,7 @@
-import check_inputs
-import secrets
-from flask import session, flash
+from flask import session
 from werkzeug.security import generate_password_hash
 from db import db
+import check_inputs
 
 def login(username, password):
     sql = "SELECT id, password FROM users WHERE username=:username"
@@ -26,4 +25,3 @@ def logout():
     del session["user_id"]
     del session["username"]
     del session["csrf_token"]
-    return

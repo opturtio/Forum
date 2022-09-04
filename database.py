@@ -4,7 +4,6 @@ def insert_visitor(username):
     sql = "INSERT INTO visitors (username, time) VALUES (:username, NOW())"
     db.session.execute(sql, {"username":username})
     db.session.commit()
-    return
 
 def check_topic_name(topic):
     sql = "SELECT COUNT(*) FROM topics WHERE topic=:topic"
@@ -18,13 +17,11 @@ def insert_topic(topic, user_id, username):
     sql = "INSERT INTO topics (topic, user_id, username, created_at) VALUES (:topic, :user_id, :username, NOW())"
     db.session.execute(sql, {"topic":topic, "user_id":user_id, "username":username})
     db.session.commit()
-    return
-    
+
 def insert_message(message, topic_id, user_id, username):
     sql = "INSERT INTO messages (content, topic_id, user_id, username, created_at) VALUES (:content, :topic_id, :user_id, :username, NOW())"
     db.session.execute(sql, {"content":message, "topic_id":topic_id, "user_id":user_id, "username":username})
     db.session.commit()
-    return
 
 def fetch_topics():
     sql = "SELECT t.*, count(m.id) as posts FROM topics t INNER JOIN messages m ON t.id = m.topic_id GROUP BY t.id ORDER BY t.id"
@@ -62,7 +59,6 @@ def delete_topic(topic_id):
     sql = "DELETE FROM topics t WHERE t.id=:topic_id"
     db.session.execute(sql, {"topic_id":topic_id})
     db.session.commit()
-    return
 
 def search(query):
     sql = "SELECT M.content, M.username, M.created_at, T.topic FROM messages M INNER JOIN topics T ON content LIKE :query AND m.topic_id=t.id"
@@ -74,7 +70,6 @@ def insert_candidate(candidate, voter):
     sql = "INSERT INTO votes (candidate, voter) VALUES (:candidate, :voter)"
     db.session.execute(sql, {"candidate":candidate, "voter":voter})
     db.session.commit()
-    return
 
 def check_voter(voter):
     sql = "SELECT COUNT(*) FROM votes WHERE voter=:voter"
